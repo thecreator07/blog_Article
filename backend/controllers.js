@@ -29,15 +29,14 @@ const createCard = asyncHandler(async (req, res) => {
 })
 
 const GetAllCard = asyncHandler(async (req, res) => {
-    const { page = 1, limit = 20 } = req.query;
-    const { title } = req.body;
+    const { page = 1, limit = 10,title } = req.query;
 
     let SearchQuery = {};
     if (title && title.trim() !== "") {
         SearchQuery.title = { $regex: title, $options: "i" }; // case-insensitive search
     }
     const result = await Card.find(SearchQuery)
-        // .select('-_id') // Exclude _id from the result if you want
+        // .select('-_id')
         .skip((page - 1) * limit)
         .limit(limit).sort()
         .exec();
