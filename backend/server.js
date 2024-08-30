@@ -27,7 +27,6 @@ app.get('/ping', (req, res) => {
     res.status(200).send('Server is running');
 });
 
-
 import CardRouter from "./routes.js"
 app.use("/api/v1",CardRouter)
 

@@ -60,7 +60,7 @@ const SearchCards = () => {
           {loading ? "loading" : "Search"}
         </button>
       </section>
-      <section className="max-w-7xl grid grid-cols-2 gap-16 pb-10">
+      <section className="max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-16 pb-10">
         {cards &&
           cards.map((data, i) => {
             return (
