@@ -7,7 +7,7 @@ import { asyncHandler } from "./utils/AsyncHandler.js";
 const createCard = asyncHandler(async (req, res) => {
 
     const { title, description } = req.body
-
+    // console.log(title, description)
     if ([title, description].some(field => !field || field.trim() === "")) {
         throw new ApiError(400, "Both fields are required");
     }
@@ -29,7 +29,7 @@ const createCard = asyncHandler(async (req, res) => {
 })
 
 const GetAllCard = asyncHandler(async (req, res) => {
-    const { page = 1, limit = 10,title } = req.query;
+    const { page = 1, limit = 50, title } = req.query;
 
     let SearchQuery = {};
     if (title && title.trim() !== "") {
@@ -46,7 +46,7 @@ const GetAllCard = asyncHandler(async (req, res) => {
 
 const GetCardDetails = asyncHandler(async (req, res) => {
     const { titleId } = req.params
-
+// console.log(titleId)
     if (!titleId) {
         throw new ApiError(500, "input the titleId")
     }
@@ -56,7 +56,7 @@ const GetCardDetails = asyncHandler(async (req, res) => {
     if (!CardDetails) {
         throw new ApiError(500, "There is no Card With this Title")
     }
-    
+
     return res.status(200).json(new ApiResponse(201, { CardDetails }, "Card Details Fetched Successfully"))
 })
 

@@ -3,16 +3,13 @@ import { API_URI } from "../utils/constant";
 
 export const AddCard = async (formdata) => {
   try {
-    const response = await axios.post(
-      `${API_URI}/api/v1/cards`,
-      { formdata },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
-      }
-    );
+    const response = await axios.post(`${API_URI}/api/v1/cards`, formdata, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    //   credentials: "include",
+    //   withCredentials: true,
+    });
 
     // Handle response data
     console.log(response.data);
@@ -31,7 +28,7 @@ export const SearchCard = async (query) => {
     }
     const responce = await axios.get(url, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
       withCredentials: true,
     });
@@ -42,19 +39,18 @@ export const SearchCard = async (query) => {
   }
 };
 
-export const CardDetails=async(titleId){
-    try {
-        const responce=await axios.get(`${API_URI}/api/v1/cards/:${titleId}`,{
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-            withCredentials: true,
-          })
+export const CardDetails = async (titleId) => {
+  try {
+    const responce = await axios.get(`${API_URI}/api/v1/cards/${titleId}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
 
-          return responce.data
-
-    } catch (error) {
-        console.error("Error fetching Cards:", error);
-        throw error;
-    }
-}
+    return responce.data;
+  } catch (error) {
+    console.error("Error fetching Cards:", error);
+    throw error;
+  }
+};

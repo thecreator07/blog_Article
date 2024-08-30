@@ -5,12 +5,17 @@ const initialState = {
 
 }
 
-export const cardslice=createSlice({
-    name:"Article Card",
+export const cardslice = createSlice({
+    name: "Article Card",
     initialState,
-    reducers:{
-        setsearchCard:(state,action)=>{
-            state.data=action.payload
+    reducers: {
+        setSearchData(state, action) {
+            const {cards}=action.payload
+            state.data = cards
         }
     }
 })
+
+export const { setSearchData } = cardslice.actions
+
+export default cardslice.reducer

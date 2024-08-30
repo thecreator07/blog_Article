@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 app.use(
     cors({
-        origin: "*", //urls to give access
+        origin: ["http://localhost:5173","http://localhost:8000"], //urls to give access
         credentials: true,
     })
 );
